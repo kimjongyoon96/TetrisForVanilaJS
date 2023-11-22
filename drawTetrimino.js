@@ -1,17 +1,16 @@
-export function drawTetrimino(gameBoard, tetrimino, position) {
-  tetrimino.shape.forEach((row, y) => {
-    row.forEach((value, x) => {
-      if (value !== 0) {
-        const blockElement = document.createElement("div");
-        blockElement.classList.add("block");
-        blockElement.classList.add(tetrimino.type + "-block"); // 테트리미노 타입에 따른 클래스 추가
+export function drawTetrimino(gameBoardCells, tetrimino, position, type) {
+  const rows = tetrimino.length; // 테트리미노 배열의 행 수
+  const cols = tetrimino[0].length; // 테트리미노 배열의 열 수
 
-        // 블록의 위치를 계산하고 적용
-        blockElement.style.top = (position.y + y) * 20 + "px";
-        blockElement.style.left = (position.x + x) * 20 + "px";
-
-        gameBoard.appendChild(blockElement);
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (tetrimino[y][x] === 1) {
+        const cellIndex = (position.y + y) * 10 + (position.x + x);
+        const cell = gameBoardCells[cellIndex];
+        if (cell) {
+          cell.classList.add("tetrimino", type + "-block"); // 타입에 맞는 클래스 추가
+        }
       }
-    });
-  });
+    }
+  }
 }

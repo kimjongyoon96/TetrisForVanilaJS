@@ -33,7 +33,10 @@ class TetriminoGenerator {
   getRandomTetrimino() {
     const keys = Object.keys(this.tetriminos);
     const randomKey = keys[Math.floor(Math.random() * keys.length)];
-    return this.tetriminos[randomKey];
+    return {
+      shape: this.tetriminos[randomKey], // 테트리미노의 모양
+      type: randomKey, // 테트리미노의 타입
+    };
   }
 }
 
