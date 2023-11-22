@@ -1,12 +1,20 @@
+import TetriminoGenerator from "./random.js";
+// import { drawTetrimino } from "./drawTetrimino.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const gameBoard = document.getElementById("gameBoard");
-  const scoreDisplay = document.getElementById("score");
   const startButton = document.getElementById("startButton");
+  const tetriminoGenerator = new TetriminoGenerator();
 
-  // 테트리스 로직 구현
-  // 예: 게임 보드 초기화, 테트리미노 생성 및 이동, 점수 계산 등
+  for (let i = 0; i < 200; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    gameBoard.appendChild(cell);
+  }
 
   startButton.addEventListener("click", () => {
-    // 게임 시작 로직
+    const randomTetrimino = tetriminoGenerator.getRandomTetrimino();
+    console.log(randomTetrimino);
+    const initialPosition = { x: 4, y: 0 }; // 예시 초기 위치
   });
 });
