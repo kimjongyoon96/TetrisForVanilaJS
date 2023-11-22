@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+#tetris {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#gameBoard {
+  width: 300px; /* 게임판의 너비 */
+  height: 600px; /* 게임판의 높이 */
+  border: 1px solid black;
+  background-color: #f0f0f0;
+}
+
+#scoreBoard {
+  margin-left: 20px;
+}
+
+button {
+  display: block;
+  margin-top: 20px;
+}
