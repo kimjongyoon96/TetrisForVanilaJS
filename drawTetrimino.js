@@ -1,4 +1,5 @@
 export function drawTetrimino(gameBoardCells, tetrimino, position, type) {
+  console.log(tetrimino);
   const rows = tetrimino.length; // 테트리미노 배열의 행 수
   const cols = tetrimino[0].length; // 테트리미노 배열의 열 수
 
