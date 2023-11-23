@@ -122,7 +122,9 @@ class TetriminoGenerator {
 
   getRandomTetrimino() {
     const keys = Object.keys(this.tetriminos);
-    const randomKey = keys[Math.floor(Math.random() * keys.length)];
+    const filteredKeys = keys.filter((key) => !key.match(/\d+$/)); // 숫자로 끝나는 키를 제외
+    const randomKey =
+      filteredKeys[Math.floor(Math.random() * filteredKeys.length)];
     return {
       shape: this.tetriminos[randomKey], // 테트리미노의 모양
       type: randomKey, // 테트리미노의 타입

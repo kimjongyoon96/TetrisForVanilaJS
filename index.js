@@ -1,14 +1,21 @@
 import TetriminoGenerator from "./random.js";
 import { drawTetrimino } from "./drawTetrimino.js";
+
+// import { gameBoardCells, setupGameBoard } from "./SetGameBoard.js";
 // import { movieDown } from "./MovingDown.js";
+// import { updateGameBoard } from "./movement/UpdateGameBoard.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const gameBoard = document.getElementById("gameBoard");
   const startButton = document.getElementById("startButton");
   const tetriminoGenerator = new TetriminoGenerator();
-  const cells = [];
 
-  /* cell에 대한 참조를 위해 배열을 선언해주었다*/
+  let currentTetrimino = {
+    shape: [],
+    position: [],
+    type: [],
+    rotation: 0,
+  };
   const gameBoardCells = []; // 게임보드판 셀들을 배열에 넣는다.
   for (let i = 0; i < 200; i++) {
     const cell = document.createElement("div");
@@ -17,17 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
     gameBoardCells.push(cell); // 배열에 셀 참조 추가
   }
 
-  // 사용자 정보처리를 위한 객체의 필요성
-  // 모듈 1 - TetrinoCurrentPosition.js
-  let currentTetrimino = {
-    shape: [],
-    position: [],
-    type: [],
-    rotation: 0,
-  };
-
   startButton.addEventListener("click", () => {
     const randomTetriminoData = tetriminoGenerator.getRandomTetrimino();
+    console.log(currentTetrimino);
     currentTetrimino.shape = randomTetriminoData.shape;
     currentTetrimino.position = { x: 4, y: 0 };
     currentTetrimino.type = randomTetriminoData.type;
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       gameBoardCells,
       currentTetrimino.shape,
       currentTetrimino.position,
-      currentTetrimino.type
+      currentTetrimino.typev
     );
     console.log(currentTetrimino.type); // s
   });
@@ -70,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentTetrimino.rotation = 0;
       rotatedType = currentTetrimino.type;
       console.log("cut");
+
       console.log(rotatedType);
       console.log(currentTetrimino.type);
       console.log(currentTetrimino.rotation);
@@ -87,12 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
     updateGameBoard();
   }
 
-  // 모듈6-updateGameBoard.js
+  //   모듈6-updateGameBoard.js
   function updateGameBoard() {
     gameBoardCells.forEach((cell) =>
       cell.classList.remove("tetrimino", currentTetrimino.type + "-block")
     );
-    console.log(currentTetrimino);
     drawTetrimino(
       gameBoardCells,
       currentTetrimino.shape,
