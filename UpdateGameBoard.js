@@ -1,13 +1,15 @@
-import { drawTetrimino } from "./drawTetrimino.js";
+// UpdateGameBoard.js
 import { currentTetrimino } from "./TetriminoCurrentPosition.js";
-import { setupGameBoard } from "./GameBoard.js";
+import { drawTetrimino } from "./drawTetrimino.js";
+// import { setupGameBoard } from "./GameBoard.js";
+import { gameBoardCells } from "./Common/index.js";
 
-const gameBoardCells = setupGameBoard(gameBoard);
-
+// const gameBoardCells = setupGameBoard(gameBoard);
 export function updateGameBoard() {
   gameBoardCells.forEach((cell) =>
     cell.classList.remove(currentTetrimino.type + "-block")
   );
+
   drawTetrimino(
     gameBoardCells,
     currentTetrimino.shape,
@@ -16,17 +18,3 @@ export function updateGameBoard() {
     currentTetrimino.rotation
   );
 }
-
-//   모듈6-updateGameBoard.js
-//   function updateGameBoard() {
-//     gameBoardCells.forEach((cell) =>
-//       cell.classList.remove(currentTetrimino.type + "-block")
-//     );
-//     drawTetrimino(
-//       gameBoardCells,
-//       currentTetrimino.shape,
-//       currentTetrimino.position,
-//       currentTetrimino.type,
-//       currentTetrimino.rotation
-//     );
-//   }

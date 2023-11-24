@@ -6,6 +6,7 @@ export function setupGameBoard(gameBoard) {
     gameBoard.appendChild(cell);
     gameBoardCells.push(cell);
   }
+
   return gameBoardCells;
 }
 
@@ -16,3 +17,5 @@ export function setupGameBoard(gameBoard) {
 //     gameBoard.appendChild(cell);
 //     gameBoardCells.push(cell); // 배열에 셀 참조 추가
 //   }
+
+/* index.js에 있는 코드 모듈화 */
