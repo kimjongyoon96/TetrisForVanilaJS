@@ -62,12 +62,13 @@ body {
   height: 50px;
   background-color: pink;
 }
-.block {
+/* .block {
   width: 20px; /* 블록의 크기 */
-  height: 20px;
+/* height: 20px;
   position: absolute; /* 절대 위치로 설정하여 자유롭게 이동 가능 */
-  border: 1px solid #ddd; /* 경계선 스타일 */
-}
+/* border: 1px solid #ddd; 경계선 스타일 */
+/* } */
+*/ */
 
 /* 각 블록 타입별 색상 */
 .I-block {

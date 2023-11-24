@@ -9,7 +9,7 @@ function drawTetrimino(gameBoardCells, tetrimino, position, type) {
         const cellIndex = (position.y + y) * 10 + (position.x + x);
         const cell = gameBoardCells[cellIndex];
         if (cell) {
-          cell.classList.add("tetrimino", type + "-block"); // 타입에 맞는 클래스 추가
+          cell.classList.add(type + "-block"); // 타입에 맞는 클래스 추가
         }
       }
     }

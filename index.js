@@ -1,6 +1,8 @@
 import TetriminoGenerator from "./random.js";
 import { drawTetrimino } from "./drawTetrimino.js";
-
+import { currentTetrimino } from "./TetriminoCurrentPosition.js";
+import { setupGameBoard } from "./GameBoard.js";
+// import { updateGameBoard } from "./UpdateGameBoard.js";
 // import { gameBoardCells, setupGameBoard } from "./SetGameBoard.js";
 // import { movieDown } from "./MovingDown.js";
 // import { updateGameBoard } from "./movement/UpdateGameBoard.js";
@@ -8,21 +10,8 @@ import { drawTetrimino } from "./drawTetrimino.js";
 document.addEventListener("DOMContentLoaded", () => {
   const gameBoard = document.getElementById("gameBoard");
   const startButton = document.getElementById("startButton");
-  const tetriminoGenerator = new TetriminoGenerator();
-
-  let currentTetrimino = {
-    shape: [],
-    position: [],
-    type: [],
-    rotation: 0,
-  };
-  const gameBoardCells = []; // 게임보드판 셀들을 배열에 넣는다.
-  for (let i = 0; i < 200; i++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    gameBoard.appendChild(cell);
-    gameBoardCells.push(cell); // 배열에 셀 참조 추가
-  }
+  const tetriminoGenerator = new TetriminoGenerator(); // 클래스 인스턴스
+  const gameBoardCells = setupGameBoard(gameBoard); // 게임보드 모듈 from GameBoard.js
 
   startButton.addEventListener("click", () => {
     const randomTetriminoData = tetriminoGenerator.getRandomTetrimino();
@@ -34,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
       gameBoardCells,
       currentTetrimino.shape,
       currentTetrimino.position,
-      currentTetrimino.typev
+      currentTetrimino.type
     );
     console.log(currentTetrimino.type); // s
   });
-  // 모듈2-movingDown.js
+  //   모듈2-movingDown.js
   function movieDown() {
     if (currentTetrimino.position.y < 19) {
       currentTetrimino.position.y += 1;
@@ -75,12 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(currentTetrimino.rotation);
     }
 
-    // if (currentTetrimino.rotation != 0) {
-    //   const rotatedType = currentTetrimino.type + currentTetrimino.rotation;
-    // } else {
-    //   const rotatedType = currentTetrimino.type;
-    // }
-
     console.log(rotatedType); // z90, z180, z270, z0
 
     currentTetrimino.shape = tetriminoGenerator.tetriminos[rotatedType];
@@ -90,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //   모듈6-updateGameBoard.js
   function updateGameBoard() {
     gameBoardCells.forEach((cell) =>
-      cell.classList.remove("tetrimino", currentTetrimino.type + "-block")
+      cell.classList.remove(currentTetrimino.type + "-block")
     );
     drawTetrimino(
       gameBoardCells,
@@ -100,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       currentTetrimino.rotation
     );
   }
+
   // current 정보를 바탕으로 테트리미노 조작 로직
   document.addEventListener("keydown", (e) => {
     switch (e.key) {
