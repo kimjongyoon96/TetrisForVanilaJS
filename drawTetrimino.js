@@ -1,11 +1,13 @@
-function drawTetrimino(gameBoardCells, tetrimino, position, type) {
-  console.log(tetrimino);
-  const rows = tetrimino.length; // 테트리미노 배열의 행 수
-  const cols = tetrimino[0].length; // 테트리미노 배열의 열 수
+function drawTetrimino(gameBoardCells, selectedTetrimino, position, type) {
+  const rows = selectedTetrimino.length; // 테트리미노 배열의 행 수
+  const cols = selectedTetrimino[0].length; // 테트리미노 배열의 열 수
 
+  console.log(rows);
+  console.log(cols);
+  console.log(selectedTetrimino);
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      if (tetrimino[y][x] === 1) {
+      if (selectedTetrimino[y][x] === 1) {
         const cellIndex = (position.y + y) * 10 + (position.x + x);
         const cell = gameBoardCells[cellIndex];
         if (cell) {

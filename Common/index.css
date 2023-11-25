@@ -23,10 +23,14 @@ body {
   height: 100vh;
 }
 /* 게임보드판 디자인 */
+/* repeat(반복횟수,배열) */
 #gameBoard {
   display: grid;
-  grid-template-columns: repeat(10, 1fr); /* 10개의 열 */
-  grid-template-rows: repeat(20, 1fr); /* 20개의 행 */
+  grid-template-columns: repeat(
+    10,
+    1fr
+  ); /* 10개의 열 *
+  /* grid-template-rows: repeat(20, 1fr); 20개의 행 */
   gap: 1px; /* 칸 사이의 간격 */
   width: 300px; /* 게임판의 너비 */
   height: 600px; /* 게임판의 높이 */
@@ -37,20 +41,20 @@ body {
 .cell {
   width: 100%; /* 각 셀은 컨테이너에 꽉 차도록 */
   height: 100%;
-  background-color: #e0e0e0; /* 셀의 배경색 */
-  border: 1px solid #ccc; /* 셀의 경계선 */
+  background-color: black; /* 셀의 배경색 */
+  border: 1px solid ivory; /* 셀의 경계선 */
 }
 
 #scoreBoard {
   margin-left: 20px;
   width: 150px;
   height: 150px;
-  background-color: #f0f0f0;
+  background-color: burlywood;
 }
 
 #startButton {
   display: block;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 50px;
   height: 50px;
   align-items: center;
@@ -62,13 +66,6 @@ body {
   height: 50px;
   background-color: pink;
 }
-/* .block {
-  width: 20px; /* 블록의 크기 */
-/* height: 20px;
-  position: absolute; /* 절대 위치로 설정하여 자유롭게 이동 가능 */
-/* border: 1px solid #ddd; 경계선 스타일 */
-/* } */
-*/ */
 
 /* 각 블록 타입별 색상 */
 .I-block {

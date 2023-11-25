@@ -1,4 +1,4 @@
-// UserInputHandler.js
+/* user의 input을 처리해주는 로직 */
 import { currentTetrimino } from "../TetriminoCurrentPosition.js";
 import { updateGameBoard } from "../UpdateGameBoard.js";
 import TetriminoGenerator from "../random.js";
@@ -44,7 +44,7 @@ class UserInputHandler {
   }
 
   moveRight() {
-    if (currentTetrimino.position.x < 9) {
+    if (currentTetrimino.position.x < 7) {
       currentTetrimino.position.x += 1;
       updateGameBoard(this.updateGameBoard);
     }
@@ -53,6 +53,7 @@ class UserInputHandler {
   rotate() {
     currentTetrimino.rotation = (currentTetrimino.rotation + 90) % 360;
     console.log(currentTetrimino.rotation); // 회전방향 즉 90도,180도,270도..
+    console.log(currentTetrimino.position);
     let rotatedType = currentTetrimino.type + currentTetrimino.rotation;
     if (currentTetrimino.rotation === 0) {
       currentTetrimino.rotation = 0;

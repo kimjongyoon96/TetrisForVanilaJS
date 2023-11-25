@@ -4,6 +4,7 @@ let currentTetrimino = {
   shape: [],
   position: [],
   type: [],
+  width: [],
   rotation: 0,
 };
 console.log(currentTetrimino);
