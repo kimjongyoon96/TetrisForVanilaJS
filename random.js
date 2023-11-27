@@ -2,16 +2,17 @@
 class TetriminoGenerator {
   constructor() {
     this.tetriminos = {
-      I: { shape: [[1], [1], [1], [1]], width: 1 },
-      I90: { shape: [[1, 1, 1, 1]], width: 4 }, // 2차원 배열로 수정
-      I180: { shape: [[1], [1], [1], [1]], width: 1 },
-      I270: { shape: [[1, 1, 1, 1]], width: 4 }, // 2차원 배열로 수정
+      I: { shape: [[1], [1], [1], [1]], width: 1, height: 4 },
+      I90: { shape: [[1, 1, 1, 1]], width: 4, height: 1 }, // 2차원 배열로 수정
+      I180: { shape: [[1], [1], [1], [1]], width: 1, heigh: 4 },
+      I270: { shape: [[1, 1, 1, 1]], width: 4, height: 1 }, // 2차원 배열로 수정
       J: {
         shape: [
           [1, 0, 0],
           [1, 1, 1],
         ],
         width: 3,
+        height: 2,
       },
       J90: {
         shape: [
@@ -20,6 +21,7 @@ class TetriminoGenerator {
           [1, 0],
         ],
         width: 2,
+        height: 3,
       },
       J180: {
         shape: [
@@ -27,6 +29,7 @@ class TetriminoGenerator {
           [0, 0, 1],
         ],
         width: 3,
+        height: 2,
       },
       J270: {
         shape: [
@@ -35,6 +38,7 @@ class TetriminoGenerator {
           [1, 1],
         ],
         width: 2,
+        height: 3,
       },
       L: {
         shape: [
@@ -42,6 +46,7 @@ class TetriminoGenerator {
           [1, 1, 1],
         ],
         width: 3,
+        height: 2,
       },
       L90: {
         shape: [
@@ -50,6 +55,7 @@ class TetriminoGenerator {
           [1, 1],
         ],
         width: 2,
+        height: 3,
       },
       L180: {
         shape: [
@@ -57,6 +63,7 @@ class TetriminoGenerator {
           [1, 0, 0],
         ],
         width: 3,
+        height: 2,
       },
       L270: {
         shape: [
@@ -65,6 +72,7 @@ class TetriminoGenerator {
           [0, 1],
         ],
         width: 2,
+        height: 3,
       },
       O: {
         shape: [
@@ -72,6 +80,7 @@ class TetriminoGenerator {
           [1, 1],
         ],
         width: 2,
+        height: 2,
       },
       O90: {
         shape: [
@@ -79,6 +88,7 @@ class TetriminoGenerator {
           [1, 1],
         ],
         width: 2,
+        height: 2,
       },
       O180: {
         shape: [
@@ -86,6 +96,7 @@ class TetriminoGenerator {
           [1, 1],
         ],
         width: 2,
+        height: 2,
       },
       O270: {
         shape: [
@@ -93,6 +104,7 @@ class TetriminoGenerator {
           [1, 1],
         ],
         width: 2,
+        height: 2,
       },
       S: {
         shape: [
@@ -100,6 +112,7 @@ class TetriminoGenerator {
           [1, 1, 0],
         ],
         width: 3,
+        height: 2,
       },
       S90: {
         shape: [
@@ -108,6 +121,7 @@ class TetriminoGenerator {
           [0, 1],
         ],
         width: 2,
+        height: 3,
       },
       S180: {
         shape: [
@@ -115,6 +129,7 @@ class TetriminoGenerator {
           [1, 1, 0],
         ],
         width: 3,
+        height: 2,
       },
       S270: {
         shape: [
@@ -123,6 +138,7 @@ class TetriminoGenerator {
           [0, 1],
         ],
         width: 2,
+        height: 3,
       },
       T: {
         shape: [
@@ -130,6 +146,7 @@ class TetriminoGenerator {
           [0, 1, 0],
         ],
         width: 3,
+        height: 2,
       },
       T90: {
         shape: [
@@ -138,6 +155,7 @@ class TetriminoGenerator {
           [1, 0],
         ],
         width: 2,
+        height: 3,
       },
       T180: {
         shape: [
@@ -145,6 +163,7 @@ class TetriminoGenerator {
           [0, 1, 0],
         ],
         width: 3,
+        height: 2,
       },
       T270: {
         shape: [
@@ -153,6 +172,7 @@ class TetriminoGenerator {
           [0, 1],
         ],
         width: 2,
+        height: 3,
       },
       Z: {
         shape: [
@@ -160,6 +180,7 @@ class TetriminoGenerator {
           [0, 1, 1],
         ],
         width: 3,
+        height: 2,
       },
       Z90: {
         shape: [
@@ -168,6 +189,7 @@ class TetriminoGenerator {
           [1, 0],
         ],
         width: 2,
+        height: 3,
       },
       Z180: {
         shape: [
@@ -175,6 +197,7 @@ class TetriminoGenerator {
           [0, 1, 1],
         ],
         width: 3,
+        height: 2,
       },
       Z270: {
         shape: [
@@ -183,6 +206,7 @@ class TetriminoGenerator {
           [1, 0],
         ],
         width: 2,
+        height: 3,
       },
     };
   }
