@@ -3,9 +3,9 @@ class TetriminoGenerator {
   constructor() {
     this.tetriminos = {
       I: { shape: [[1], [1], [1], [1]], width: 1 },
-      I90: { shape: [1, 1, 1, 1], width: 4 },
+      I90: { shape: [[1, 1, 1, 1]], width: 4 }, // 2차원 배열로 수정
       I180: { shape: [[1], [1], [1], [1]], width: 1 },
-      I270: { shape: [[1, 1, 1, 1]], width: 4 },
+      I270: { shape: [[1, 1, 1, 1]], width: 4 }, // 2차원 배열로 수정
       J: {
         shape: [
           [1, 0, 0],
@@ -193,6 +193,12 @@ class TetriminoGenerator {
       filteredKeys[Math.floor(Math.random() * filteredKeys.length)];
 
     const selectedTetrimino = this.tetriminos[randomKey]; // 선택된 테트리미노 객체
+    console.log(selectedTetrimino);
+    console.log(selectedTetrimino.shape);
+    console.log(selectedTetrimino.width);
+    console.log(selectedTetrimino.rotation);
+    console.log(selectedTetrimino.type);
+    console.log(selectedTetrimino.position);
 
     return {
       shape: selectedTetrimino.shape, // 테트리미노의 모양

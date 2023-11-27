@@ -15,17 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.addEventListener("click", () => {
     const randomTetriminoData = tetriminoGenerator.getRandomTetrimino();
     currentTetrimino.shape = randomTetriminoData.shape;
-    console.log(currentTetrimino);
     currentTetrimino.position = { x: 4, y: 0 };
     currentTetrimino.type = randomTetriminoData.type;
     currentTetrimino.width = randomTetriminoData.width;
-    console.log(currentTetrimino);
+    currentTetrimino.rotation = randomTetriminoData.rotation;
     drawTetrimino(
       gameBoardCells,
       currentTetrimino.shape,
       currentTetrimino.position,
-      currentTetrimino.type
+      currentTetrimino.type,
+      currentTetrimino.rotation
     );
+    console.log(currentTetrimino.positon);
     console.log(currentTetrimino);
   });
 });

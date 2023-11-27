@@ -5,7 +5,7 @@ let currentTetrimino = {
   position: [],
   type: [],
   width: [],
-  rotation: 0,
+  rotation: [],
 };
 console.log(currentTetrimino);
 export { currentTetrimino };
