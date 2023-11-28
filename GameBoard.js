@@ -3,6 +3,7 @@ export function setupGameBoard(gameBoard) {
   for (let i = 0; i < 200; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
+    cell.setAttribute("data-index", i);
     gameBoard.appendChild(cell);
     gameBoardCells.push(cell);
   }

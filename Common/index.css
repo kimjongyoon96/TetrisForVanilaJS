@@ -92,3 +92,6 @@ body {
 .-block-90 {
   background-color: pink;
 }
+.occupied {
+  border-color: wheat;
+}

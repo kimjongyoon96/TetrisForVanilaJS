@@ -2,7 +2,10 @@
 import { currentTetrimino } from "../TetriminoCurrentPosition.js";
 import { updateGameBoard } from "../UpdateGameBoard.js";
 import TetriminoGenerator from "../random.js";
-
+import { drawTetrimino } from "./drawTetrimino.js";
+import { gameBoardCells } from "./Common/index.js";
+import { checkCompleteLines } from "./checkCompleteLines.js";
+const tetriminoGenerator = new TetriminoGenerator();
 class UserInputHandler {
   constructor(gameBoardCells) {
     this.gameBoardCells = gameBoardCells;
@@ -28,6 +31,8 @@ class UserInputHandler {
       }
     });
   }
+
+  // 모듈화 후보 1
   isMoveDownStop() {
     if (currentTetrimino.type === "I") {
       if (
@@ -35,7 +40,7 @@ class UserInputHandler {
         currentTetrimino.rotation === 180
       ) {
         currentTetrimino.height = 4;
-        return currentTetrimino.position.y < 18;
+        return currentTetrimino.position.y < 16;
       } else if (
         currentTetrimino.rotation === 90 ||
         currentTetrimino.rotation === 270
@@ -98,8 +103,8 @@ class UserInputHandler {
         currentTetrimino.rotation === 0 ||
         currentTetrimino.rotation === 180
       ) {
-        currentTetrimino.height = 3;
-        return currentTetrimino.position.y < 17;
+        currentTetrimino.height = 2;
+        return currentTetrimino.position.y < 18;
       } else if (
         currentTetrimino.rotation === 90 ||
         currentTetrimino.rotation === 270
@@ -123,14 +128,94 @@ class UserInputHandler {
         return currentTetrimino.position.y < 17;
       }
     }
+    return false;
   }
-  moveDown() {
-    this.isMoveDownStop();
-    if (this.isMoveDownStop()) {
-      currentTetrimino.position.y += 1;
-      updateGameBoard(this.gameBoardCells);
-      console.log(currentTetrimino.position);
+
+  fixCurrentTetrimino() {
+    // 현재 테트리미노를 게임 보드에 고정하는 로직
+    currentTetrimino.shape.forEach((row, y) => {
+      row.forEach((cell, x) => {
+        if (cell === 1) {
+          const cellIndex =
+            (currentTetrimino.position.y + y) * 10 +
+            (currentTetrimino.position.x + x);
+          console.log("occupied");
+
+          gameBoardCells[cellIndex].classList.add("occupied");
+          gameBoardCells[cellIndex].classList.add("-block");
+          gameBoardCells[cellIndex].classList.add("-block-90");
+        }
+      });
+    });
+  }
+
+  checkCollision(newPosition, newShape) {
+    for (let y = 0; y < newShape.length; y++) {
+      for (let x = 0; x < newShape[y].length; x++) {
+        if (newShape[y][x] === 1) {
+          let targetX = newPosition.x + x;
+          let targetY = newPosition.y + y;
+
+          // 해당 위치의 셀이 'occupied' 클래스를 가지고 있는지 확인
+          const cellIndex = targetY * 10 + targetX;
+          if (
+            gameBoardCells[cellIndex] &&
+            gameBoardCells[cellIndex].classList.contains("occupied")
+          ) {
+            return true; // 충돌 발생
+          }
+          console.log(gameBoardCells[cellIndex]);
+        }
+      }
     }
+    return false; // 충돌 없음
+  }
+
+  moveDown() {
+    let newPosition = {
+      x: currentTetrimino.position.x,
+      y: currentTetrimino.position.y + 1,
+    };
+    if (!this.checkCollision(newPosition, currentTetrimino.shape)) {
+      if (this.isMoveDownStop()) {
+        currentTetrimino.position.y += 1;
+        updateGameBoard(this.gameBoardCells);
+        console.log(currentTetrimino.shape);
+      } else {
+        // 바닥에 닿았을 경우의 처리
+        this.fixCurrentTetrimino();
+        const randomTetriminoData = tetriminoGenerator.getRandomTetrimino();
+        currentTetrimino.shape = randomTetriminoData.shape;
+        currentTetrimino.position = { x: 4, y: 0 }; // 초기 위치 설정
+        currentTetrimino.type = randomTetriminoData.type;
+        currentTetrimino.width = randomTetriminoData.width;
+        currentTetrimino.rotation = randomTetriminoData.rotation;
+        drawTetrimino(
+          gameBoardCells,
+          currentTetrimino.shape,
+          currentTetrimino.position,
+          currentTetrimino.type,
+          currentTetrimino.rotation
+        );
+      }
+    } else {
+      this.fixCurrentTetrimino();
+      const randomTetriminoData = tetriminoGenerator.getRandomTetrimino();
+      currentTetrimino.shape = randomTetriminoData.shape;
+      currentTetrimino.position = { x: 4, y: 0 }; // 초기 위치 설정
+      currentTetrimino.type = randomTetriminoData.type;
+      currentTetrimino.width = randomTetriminoData.width;
+      currentTetrimino.rotation = randomTetriminoData.rotation;
+      drawTetrimino(
+        gameBoardCells,
+        currentTetrimino.shape,
+        currentTetrimino.position,
+        currentTetrimino.type,
+        currentTetrimino.rotation
+      );
+    }
+    checkCompleteLines();
+    console.log(gameBoardCells);
   }
 
   moveLeft() {
@@ -138,7 +223,14 @@ class UserInputHandler {
       currentTetrimino.position.x -= 1;
       updateGameBoard(this.gameBoardCells);
     }
+    // for (let i = 0; i < this.gameBoardCells.length; i++) {
+    //   console.log("moon");
+    //   if (this.gameBoardCells[i].classList.contains("I-block",)) {
+    //     console.log(this.gameBoardCells[i]);
+    //   }
+    // }
   }
+  // 모듈화 후보 2
   is_possible() {
     if (currentTetrimino.type === "I") {
       if (
