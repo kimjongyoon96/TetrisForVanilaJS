@@ -7,9 +7,8 @@ function drawTetrimino(
 ) {
   const rows = selectedTetrimino.length; // 테트리미노 배열의 행 수
   const cols = selectedTetrimino[0].length; // 테트리미노 배열의 열 수
-  console.log(rows);
-  console.log(cols);
-  console.log(selectedTetrimino);
+  //   console.log(rows);
+  //   console.log(cols);
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (selectedTetrimino[y][x] === 1) {
@@ -19,7 +18,7 @@ function drawTetrimino(
         if (cell) {
           cell.classList.add(type + "-block"); // 타입에 맞는 클래스 추가
 
-          if (rotation === 0) {
+          if ((rotation === 0, 90, 180, 270)) {
             cell.classList.add(type + "-block-90");
           }
         }

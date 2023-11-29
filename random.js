@@ -217,12 +217,12 @@ class TetriminoGenerator {
       filteredKeys[Math.floor(Math.random() * filteredKeys.length)];
 
     const selectedTetrimino = this.tetriminos[randomKey]; // 선택된 테트리미노 객체
-    console.log(selectedTetrimino);
-    console.log(selectedTetrimino.shape);
-    console.log(selectedTetrimino.width);
-    console.log(selectedTetrimino.rotation);
-    console.log(selectedTetrimino.type);
-    console.log(selectedTetrimino.position);
+    // console.log(selectedTetrimino);
+    // console.log(selectedTetrimino.shape);
+    // console.log(selectedTetrimino.width);
+    // console.log(selectedTetrimino.rotation);
+    // console.log(selectedTetrimino.type);
+    // console.log(selectedTetrimino.position);
 
     return {
       shape: selectedTetrimino.shape, // 테트리미노의 모양

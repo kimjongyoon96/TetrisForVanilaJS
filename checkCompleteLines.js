@@ -9,6 +9,9 @@ export function checkCompleteLines() {
     for (let x = 0; x < 10; x++) {
       // 해당 줄의 모든 셀을 순회
       const cellIndex = y * 10 + x; // 현재 셀의 1차원 배열 인덱스 계산
+      console.log("check1");
+      console.log(cellIndex);
+      console.log(gameBoardCells[cellIndex].classList);
       if (!gameBoardCells[cellIndex].classList.contains("occupied")) {
         isComplete = false; // 셀이 비어 있으면(isComplete를 false로 설정)
         break; // 더 이상 현재 줄을 검사할 필요가 없으므로 반복 중단
@@ -20,3 +23,5 @@ export function checkCompleteLines() {
   }
   return rowsToRemove; // 완전히 채워진 줄의 인덱스 배열 반환
 }
+
+// 결국, rowsToRemove 에 행의 값 (17열,18열이 들어간다.)

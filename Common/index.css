@@ -9,11 +9,11 @@ body {
   width: 100px;
   height: 100px;
   position: absolute; /* 절대 위치 지정 */
-  top: 0; /* 상단에서 0px */
-  left: 50%; /* 왼쪽에서 화면의 50% */
+  top: 25%; /* 상단에서 0px */
+  left: 55%; /* 왼쪽에서 화면의 50% */
   transform: translateX(-50%); /* X축으로 -50% 이동하여 정중앙에 배치 */
   /* 추가 스타일링 */
-  background-color: blue;
+  background-color: white;
 }
 /* 테트리스 디자인 */
 #tetris {
@@ -92,6 +92,7 @@ body {
 .-block-90 {
   background-color: pink;
 }
+
 .occupied {
   border-color: wheat;
 }

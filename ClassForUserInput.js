@@ -5,10 +5,13 @@ import TetriminoGenerator from "../random.js";
 import { drawTetrimino } from "./drawTetrimino.js";
 import { gameBoardCells } from "./Common/index.js";
 import { checkCompleteLines } from "./checkCompleteLines.js";
+import { removecompleteLines } from "./CheckRemoveLines.js";
+import { shiftDownLines } from "./ShiftDownLines.js";
 const tetriminoGenerator = new TetriminoGenerator();
 class UserInputHandler {
   constructor(gameBoardCells) {
     this.gameBoardCells = gameBoardCells;
+    this.isTetriminoFixed = false;
     this.tetriminoGenerator = new TetriminoGenerator();
     this.addKeyboardListeners();
   }
@@ -141,9 +144,7 @@ class UserInputHandler {
             (currentTetrimino.position.x + x);
           console.log("occupied");
 
-          gameBoardCells[cellIndex].classList.add("occupied");
-          gameBoardCells[cellIndex].classList.add("-block");
-          gameBoardCells[cellIndex].classList.add("-block-90");
+          gameBoardCells[cellIndex].classList.add("occupied", "-block-90");
         }
       });
     });
@@ -164,11 +165,18 @@ class UserInputHandler {
           ) {
             return true; // 충돌 발생
           }
-          console.log(gameBoardCells[cellIndex]);
+          //   console.log(gameBoardCells[cellIndex]);
         }
       }
     }
     return false; // 충돌 없음
+  }
+  updateBoardAfterLineCompletion() {
+    const rowsToRemove = checkCompleteLines();
+    if (rowsToRemove.length > 0) {
+      removecompleteLines(rowsToRemove);
+      shiftDownLines(Math.max(...rowsToRemove));
+    }
   }
 
   moveDown() {
@@ -176,46 +184,39 @@ class UserInputHandler {
       x: currentTetrimino.position.x,
       y: currentTetrimino.position.y + 1,
     };
+
     if (!this.checkCollision(newPosition, currentTetrimino.shape)) {
       if (this.isMoveDownStop()) {
         currentTetrimino.position.y += 1;
         updateGameBoard(this.gameBoardCells);
-        console.log(currentTetrimino.shape);
       } else {
         // 바닥에 닿았을 경우의 처리
         this.fixCurrentTetrimino();
-        const randomTetriminoData = tetriminoGenerator.getRandomTetrimino();
-        currentTetrimino.shape = randomTetriminoData.shape;
-        currentTetrimino.position = { x: 4, y: 0 }; // 초기 위치 설정
-        currentTetrimino.type = randomTetriminoData.type;
-        currentTetrimino.width = randomTetriminoData.width;
-        currentTetrimino.rotation = randomTetriminoData.rotation;
-        drawTetrimino(
-          gameBoardCells,
-          currentTetrimino.shape,
-          currentTetrimino.position,
-          currentTetrimino.type,
-          currentTetrimino.rotation
-        );
+        this.createNewTetrimino();
+        this.updateBoardAfterLineCompletion();
       }
     } else {
+      // 충돌이 발생했을 경우의 처리
       this.fixCurrentTetrimino();
-      const randomTetriminoData = tetriminoGenerator.getRandomTetrimino();
-      currentTetrimino.shape = randomTetriminoData.shape;
-      currentTetrimino.position = { x: 4, y: 0 }; // 초기 위치 설정
-      currentTetrimino.type = randomTetriminoData.type;
-      currentTetrimino.width = randomTetriminoData.width;
-      currentTetrimino.rotation = randomTetriminoData.rotation;
-      drawTetrimino(
-        gameBoardCells,
-        currentTetrimino.shape,
-        currentTetrimino.position,
-        currentTetrimino.type,
-        currentTetrimino.rotation
-      );
+      this.createNewTetrimino();
+      this.updateBoardAfterLineCompletion();
     }
-    checkCompleteLines();
-    console.log(gameBoardCells);
+  }
+
+  createNewTetrimino() {
+    const randomTetriminoData = tetriminoGenerator.getRandomTetrimino();
+    currentTetrimino.shape = randomTetriminoData.shape;
+    currentTetrimino.position = { x: 4, y: 0 };
+    currentTetrimino.type = randomTetriminoData.type;
+    currentTetrimino.width = randomTetriminoData.width;
+    currentTetrimino.rotation = randomTetriminoData.rotation;
+    drawTetrimino(
+      gameBoardCells,
+      currentTetrimino.shape,
+      currentTetrimino.position,
+      currentTetrimino.type,
+      currentTetrimino.rotation
+    );
   }
 
   moveLeft() {
