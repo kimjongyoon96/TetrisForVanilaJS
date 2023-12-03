@@ -1,4 +1,3 @@
-import { showGameOverPopup } from "./ModalForGameOver.js";
 export function startCountdown(duration) {
   let remainingTime = duration;
   const clockElement = document.getElementById("clock");
@@ -11,7 +10,6 @@ export function startCountdown(duration) {
     if (remainingTime < 0) {
       clearInterval(timer);
       clockElement.textContent = "0";
-      showGameOverPopup();
     }
   }, 1000);
 }

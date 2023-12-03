@@ -6,14 +6,24 @@ body {
 
 /* 시계 디자인 */
 #clock {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   position: absolute; /* 절대 위치 지정 */
   top: 25%; /* 상단에서 0px */
-  left: 55%; /* 왼쪽에서 화면의 50% */
+  left: 50%; /* 왼쪽에서 화면의 50% */
   transform: translateX(-50%); /* X축으로 -50% 이동하여 정중앙에 배치 */
   /* 추가 스타일링 */
-  background-color: white;
+  background-color: black;
+  font-size: 24px; /* 글씨 크기 */
+  color: #ff0000; /* 글씨 색상 */
+  font-weight: bold; /* 글씨 굵기 */
+  text-align: center; /* 텍스트 정렬 */
+  margin: 20px; /* 외부 여백 */
+  padding: 10px; /* 내부 여백 */
+  border: 2px solid #000; /* 테두리 */
+  border-radius: 10px; /* 테두리 둥글기 */
+  opacity: 50%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
 }
 /* 테트리스 디자인 */
 #tetris {
@@ -34,6 +44,7 @@ body {
   gap: 1px; /* 칸 사이의 간격 */
   width: 300px; /* 게임판의 너비 */
   height: 600px; /* 게임판의 높이 */
+
   border: 1px solid black;
   background-color: #f0f0f0;
 }
@@ -45,6 +56,12 @@ body {
   border: 1px solid ivory; /* 셀의 경계선 */
 }
 
+.newcell {
+  width: 100%; /* 각 셀은 컨테이너에 꽉 차도록 */
+  height: 100%;
+  background-color: black; /* 셀의 배경색 */
+  border: 1px solid ivory; /* 셀의 경계선 */
+}
 #scoreBoard {
   margin-left: 20px;
   width: 150px;
@@ -90,9 +107,47 @@ body {
   background-color: orange;
 }
 .-block-90 {
-  background-color: pink;
+  opacity: 0.8;
 }
 
 .occupied {
-  border-color: wheat;
+  opacity: 0.8; /* 약간 투명 */
+}
+
+/* 모달창의 기본 스타일 */
+.modal {
+  display: none; /* 기본적으로 숨김 */
+  position: fixed; /* 고정 위치 */
+  z-index: 1; /* 다른 요소들 위에 표시 */
+  left: 0;
+  top: 0;
+  width: 100%; /* 전체 너비 */
+  height: 100%; /* 전체 높이 */
+  overflow: auto; /* 내용이 넘칠 경우 스크롤 */
+  background-color: rgb(0, 0, 0); /* 배경 색 */
+  background-color: rgba(0, 0, 0, 0.4); /* 약간 투명 */
+}
+
+/* 모달 컨텐츠 스타일 */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 중앙 정렬 */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* 너비 */
+}
+
+/* 닫기 버튼 */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

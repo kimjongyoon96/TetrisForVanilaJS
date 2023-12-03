@@ -6,7 +6,10 @@ import { drawTetrimino } from "./drawTetrimino.js";
 import { gameBoardCells } from "./Common/index.js";
 import { checkCompleteLines } from "./checkCompleteLines.js";
 import { removecompleteLines } from "./CheckRemoveLines.js";
-import { shiftDownLines } from "./ShiftDownLines.js";
+import { addNewCell } from "./addNewCell.js";
+const gameBoard = document.getElementById("gameBoard");
+
+// import { shiftDownLines } from "./ShiftDownLines.js";
 const tetriminoGenerator = new TetriminoGenerator();
 class UserInputHandler {
   constructor(gameBoardCells) {
@@ -142,7 +145,7 @@ class UserInputHandler {
           const cellIndex =
             (currentTetrimino.position.y + y) * 10 +
             (currentTetrimino.position.x + x);
-          console.log("occupied");
+          console.log("고정로직 잘 작동");
 
           gameBoardCells[cellIndex].classList.add("occupied", "-block-90");
         }
@@ -174,8 +177,16 @@ class UserInputHandler {
   updateBoardAfterLineCompletion() {
     const rowsToRemove = checkCompleteLines();
     if (rowsToRemove.length > 0) {
-      removecompleteLines(rowsToRemove);
-      shiftDownLines(Math.max(...rowsToRemove));
+      // 하나의 행이 채워졌는지 확인
+      const lineRemoved = removecompleteLines(rowsToRemove); // 빈상태로 만듬 즉, 삭제
+
+      console.log(rowsToRemove); //19 출력
+      //   shiftDownLines(Math.max(...rowsToRemove)); // 배열에 있는 인덱스중 가장 큰값을 찾는다.
+
+      if (lineRemoved) {
+        addNewCell(gameBoard);
+        console.log("newcell추가");
+      }
     }
   }
 
