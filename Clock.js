@@ -1,3 +1,4 @@
+import { gameOverModal } from "./ModalForGameOver";
 export function startCountdown(duration) {
   let remainingTime = duration;
   const clockElement = document.getElementById("clock");
@@ -10,6 +11,7 @@ export function startCountdown(duration) {
     if (remainingTime < 0) {
       clearInterval(timer);
       clockElement.textContent = "0";
+      // gameOverModal();
     }
   }, 1000);
 }

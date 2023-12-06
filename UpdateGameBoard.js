@@ -6,8 +6,7 @@ import { drawTetrimino } from "./drawTetrimino.js";
 import { gameBoardCells } from "./Common/index.js";
 export function updateGameBoard() {
   gameBoardCells.forEach((cell) => {
-    if (!cell.classList.contains("occupied")) {
-      // 고정되지 않은 셀만 클래스 제거
+    if (cell && !cell.classList.contains("occupied")) {
       cell.classList.remove(currentTetrimino.type + "-block");
       cell.classList.remove(currentTetrimino.type + "-block-90");
     }

@@ -16,13 +16,21 @@
         <button id="startButton">게임 시작</button>
         <button id="stopButton">일시 정지</button>
       </div>
+      <div id="pauseModal" class="modal">
+        <div class="modal-content">
+          <button id="resumeButton">게임 재개</button>
+          <button id="restartButton">다시 시작</button>
+        </div>
+      </div>
+      <div id="gameover" class="modal">
+        <div class="modal-content">
+        <button id="restartButton">GAME OVER</button>
+        <button id="restartButton">다시 시작 하기</button>
+
+        
+      </div>
     </div>
-    <div id="gameOverPopup" style="display: none">
-      <p>게임 오버!</p>
-      <p>다시 시작하겠습니까?</p>
-      <button id="restartButton">예</button>
-      <button id="cancelButton">아니오</button>
-    </div>
+
     <script type="module" src="index.js"></script>
   </body>
 </html>

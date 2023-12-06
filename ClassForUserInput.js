@@ -6,7 +6,8 @@ import { drawTetrimino } from "./drawTetrimino.js";
 import { gameBoardCells } from "./Common/index.js";
 import { checkCompleteLines } from "./checkCompleteLines.js";
 import { removecompleteLines } from "./CheckRemoveLines.js";
-import { addNewCell } from "./addNewCell.js";
+import { updateScore } from "./scoreBoard.js";
+import { gameOverModal } from "./ModalForGameOver.js";
 const gameBoard = document.getElementById("gameBoard");
 
 // import { shiftDownLines } from "./ShiftDownLines.js";
@@ -146,8 +147,9 @@ class UserInputHandler {
             (currentTetrimino.position.y + y) * 10 +
             (currentTetrimino.position.x + x);
           console.log("고정로직 잘 작동");
-
-          gameBoardCells[cellIndex].classList.add("occupied", "-block-90");
+          if (gameBoardCells[cellIndex]) {
+            gameBoardCells[cellIndex].classList.add("occupied", "-block-90");
+          }
         }
       });
     });
@@ -174,21 +176,21 @@ class UserInputHandler {
     }
     return false; // 충돌 없음
   }
-  updateBoardAfterLineCompletion() {
-    const rowsToRemove = checkCompleteLines();
-    if (rowsToRemove.length > 0) {
-      // 하나의 행이 채워졌는지 확인
-      const lineRemoved = removecompleteLines(rowsToRemove); // 빈상태로 만듬 즉, 삭제
+  //   updateBoardAfterLineCompletion() {
+  //     const rowsToRemove = checkCompleteLines();
 
-      console.log(rowsToRemove); //19 출력
-      //   shiftDownLines(Math.max(...rowsToRemove)); // 배열에 있는 인덱스중 가장 큰값을 찾는다.
+  //     if (rowsToRemove.length > 0) {
+  //       // 하나의 행이 채워졌는지 확인
+  //       const lineRemoved = removecompleteLines(rowsToRemove); // 빈상태로 만듬 즉, 삭제
 
-      if (lineRemoved) {
-        addNewCell(gameBoard);
-        console.log("newcell추가");
-      }
-    }
-  }
+  //       console.log(rowsToRemove); //19 출력
+
+  //       if (lineRemoved) {
+  //         // addNewCell(gameBoard);
+  //         console.log("newcell추가");
+  //       }
+  //     }
+  //   }
 
   moveDown() {
     let newPosition = {
@@ -204,13 +206,27 @@ class UserInputHandler {
         // 바닥에 닿았을 경우의 처리
         this.fixCurrentTetrimino();
         this.createNewTetrimino();
-        this.updateBoardAfterLineCompletion();
+        const rowsToRemove = checkCompleteLines();
+        if (rowsToRemove.length > 0) {
+          removecompleteLines(rowsToRemove);
+          updateScore(rowsToRemove);
+        }
+        console.log(gameBoard);
+        console.log(gameBoardCells);
+        console.log("여기 작동하는겨머여");
       }
     } else {
       // 충돌이 발생했을 경우의 처리
       this.fixCurrentTetrimino();
       this.createNewTetrimino();
-      this.updateBoardAfterLineCompletion();
+      const rowsToRemove = checkCompleteLines();
+      if (rowsToRemove.length > 0) {
+        removecompleteLines(rowsToRemove);
+        updateScore(rowsToRemove);
+      }
+      console.log("checkGameOver");
+      gameOverModal();
+      console.log("모달이잘오는구나");
     }
   }
 
@@ -235,12 +251,6 @@ class UserInputHandler {
       currentTetrimino.position.x -= 1;
       updateGameBoard(this.gameBoardCells);
     }
-    // for (let i = 0; i < this.gameBoardCells.length; i++) {
-    //   console.log("moon");
-    //   if (this.gameBoardCells[i].classList.contains("I-block",)) {
-    //     console.log(this.gameBoardCells[i]);
-    //   }
-    // }
   }
   // 모듈화 후보 2
   is_possible() {
@@ -348,14 +358,6 @@ class UserInputHandler {
       updateGameBoard(this.gameBoardCells); // 게임 보드 업데이트
       console.log(currentTetrimino); // 콘솔에 현재 테트리미노 정보 로깅
     }
-
-    // if (currentTetrimino.position.x < 7) {
-    //   currentTetrimino.position.x += 1;
-    //   updateGameBoard(this.gameBoardCells);
-    //   console.log(currentTetrimino); // {x:5,y:1, => x:6,y:1..}
-    //   // }
-    //   // if (is_possible()) {
-    // }
   }
   rotate() {
     currentTetrimino.rotation = (currentTetrimino.rotation + 90) % 360; // 90 180 270 0
