@@ -10,7 +10,10 @@ const html = {
         <link rel="stylesheet" type="text/css" href="/index.css" />
       </head>
       <body>
+      <div id="liveChat"></div>
+
         <div id="clock"></div>
+       
         <div id="tetris"> 
           <div id="gameBoard"></div>
           <div id="scoreBoard">
@@ -50,6 +53,9 @@ const html = {
    <script type="module" src="/scoreBoard.js"></script>
    <script type="module" src="/TetriminoCurrentPosition.js"></script>
    <script type="module" src="/UpdateGameBoard.js"></script>
+   <script type="module" src="/socktLive.js"></script>
+  
+
   `,
 };
 module.exports = html;
