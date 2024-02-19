@@ -10,7 +10,13 @@ const html = {
         <link rel="stylesheet" type="text/css" href="/index.css" />
       </head>
       <body>
-      <div id="liveChat"></div>
+      <div id="liveChat">
+      <div class="chat-messages">
+       
+      </div>
+      <input type="text" class="chat-input" placeholder="메시지를 입력하세요...">
+    
+    </div>
 
         <div id="clock"></div>
        

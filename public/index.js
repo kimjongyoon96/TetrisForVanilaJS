@@ -16,13 +16,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const restartButton = document.getElementById("restartButton");
   const pauseModal = document.getElementById("pauseModal");
   const tetriminoGenerator = new TetriminoGenerator(); // 클래스 인스턴스 from random.js
-  const socketichat = new socketChath();
+  const { sendMessage } = socketChath();
+  const chatInput = document.querySelector("#liveChat .chat-input");
   const userInputHandler = new UserInputHandler(gameBoardCells);
   // gameOverModal();
   document.getElementById("stopButton").addEventListener("click", function () {
     document.getElementById("pauseModal").style.display = "block"; // 모달 표시
   });
+  chatInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      const message = chatInput.value.trim();
+      if (message) {
+        sendMessage(message);
+        const liveChat = document.getElementById("liveChat");
+        const messageElement = document.createElement("div");
+        messageElement.textContent = message; // 사용자가 입력한 메시지 설정
+        liveChat.appendChild(messageElement); // 채팅창에 메시지 요소 추가
 
+        console.log(message, "여기서가야돼");
+        chatInput.value = ""; // 입력 필드 초기화
+      }
+    }
+  });
   restartButton.addEventListener("click", function () {
     pauseModal.style.display = "none"; // 모달 숨김
     location.reload(); // 페이지 새로고침으로 게임 다시 시작
