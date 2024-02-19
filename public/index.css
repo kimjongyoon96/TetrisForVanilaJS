@@ -144,3 +144,48 @@ body {
   margin: 10px;
   width: 40%;
 }
+#liveChat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 300px;
+  height: 400px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#liveChat .chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+#liveChat .chat-input {
+  width: calc(100% - 20px); /* Adjust based on padding */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Optional: Add custom scrollbar for chat messages */
+#liveChat .chat-messages::-webkit-scrollbar {
+  width: 5px;
+}
+
+#liveChat .chat-messages::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 2px;
+}
+
+#liveChat .chat-messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}

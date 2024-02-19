@@ -3,9 +3,10 @@ import { drawTetrimino } from "../drawTetrimino.js";
 import { currentTetrimino } from "../TetriminoCurrentPosition.js";
 import { setupGameBoard } from "../GameBoard.js";
 import UserInputHandler from "../ClassForUserInput.js";
-import { updateGameBoard } from "./UpdateGameBoard.js";
-import { gameOverModal } from "../ModalForGameOver.js";
+// import { updateGameBoard } from "./UpdateGameBoard.js";
+// import { gameOverModal } from "../ModalForGameOver.js";
 import { startCountdown } from "../Clock.js";
+import { socketChath } from "./socktLive.js";
 export let gameBoardCells = setupGameBoard(gameBoard); // 게임보드 모듈 from GameBoard.js
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const restartButton = document.getElementById("restartButton");
   const pauseModal = document.getElementById("pauseModal");
   const tetriminoGenerator = new TetriminoGenerator(); // 클래스 인스턴스 from random.js
+  const socketichat = new socketChath();
   const userInputHandler = new UserInputHandler(gameBoardCells);
   // gameOverModal();
   document.getElementById("stopButton").addEventListener("click", function () {
