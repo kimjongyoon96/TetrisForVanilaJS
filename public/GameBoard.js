@@ -7,13 +7,15 @@ export function setupGameBoard(gameBoard) {
     cell.setAttribute("data-index", i);
     gameBoard.appendChild(cell);
     gameBoardCells.push(cell);
+    d;
   }
 
   return gameBoardCells;
 }
 
+
 // css 에서 repeat(반복,배열)를 통해서  행부분을 만들었다 그런데, 열부분이 없다.
-// 이는, setupGameBoard 를 통해서 구현을 하였다. => 정확하게 얘기하면, 200개의 DIV일 뿐이다.
+// 이는, setupGameBoard 를 통해서 구현을 하였다. => d정확하게 얘기하면, 200개의 DIV일 뿐이다.
 // 이 함수는, index.js에서 전역변수로 할당을 하고, 이를 활용한다.
 
 // 1. gameBoardCells 라는 빈 배별을 반들어준다.
