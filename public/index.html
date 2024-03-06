@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,14 +9,15 @@
   </head>
   <body>
     <div id="liveChat">
-      <div class="chat-messages">
-       
-      </div>
-      <input type="text" class="chat-input" placeholder="메시지를 입력하세요...">
-    
+      <div class="chat-messages"></div>
+      <input
+        type="text"
+        class="chat-input"
+        placeholder="메시지를 입력하세요..."
+      />
     </div>
     <div id="clock"></div>
-    <div id="tetris"> 
+    <div id="tetris">
       <div id="gameBoard"></div>
       <div id="scoreBoard">
         <div>점수: <span id="score">0</span></div>
@@ -31,13 +32,15 @@
       </div>
       <div id="gameover" class="modal">
         <div class="modal-content">
-        <button id="restartButton">GAME OVER</button>
-        <button id="restartButton">다시 시작 하기</button>
-
-        
+          <button id="restartButton">GAME OVER</button>
+          <button id="restartButton">다시 시작 하기</button>
+        </div>
       </div>
+      <!-- 여기에 누락된 닫는 div 태그 추가 -->
     </div>
+    <!-- 이 div 태그는 id="tetris"의 닫는 태그로 보임 -->
 
     <script type="module" src="index.js"></script>
+    <script type="module" src="testGet.js"></script>
   </body>
 </html>

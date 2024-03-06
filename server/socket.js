@@ -14,6 +14,7 @@ function socketChath() {
       console.log("여기는 서버 쪽 받은 메시지:", messageStr);
 
       // 받은 메시지를 모든 클라이언트에게 브로드캐스트합니다.
+      // 여기서, 내가 쓴건지 아니면 다른놈인지 판단
       wss.clients.forEach(function each(client) {
         if (client !== ws && client.readyState === webSocket.OPEN) {
           client.send(messageStr);
